@@ -1,0 +1,6 @@
+.idea/
+scrapy.cfg
+myenv/
+__pychache__
+__init__
+chromedriver-win64/

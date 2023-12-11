@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = "Daraz.spiders"
 #USER_AGENT = "Daraz (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -62,9 +62,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "Daraz.pipelines.DarazPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "Daraz.pipelines.DarazPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -78,7 +78,7 @@ ROBOTSTXT_OBEY = True
 #AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
-from shutil import which
+# from shutil import which
 # Enable and configure HTTP caching (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
 #HTTPCACHE_ENABLED = True
@@ -94,18 +94,18 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 
 #added code by me
-SPLASH_URL = 'http://localhost:8050'  # Adjust the URL if your Splash instance is running on a different host or port
+# SPLASH_URL = 'http://localhost:8050'  # Adjust the URL if your Splash instance is running on a different host or port
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy_splash.SplashCookiesMiddleware': 723,
-    'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+    'scrapy_selenium.SeleniumMiddleware': 800
 }
 SPIDER_MIDDLEWARES = {
-    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+    # 'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+    
 }
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
-
-HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 AJAXCRAWL_ENABLED = True
-
-  
+# FEEDS={
+#     'result.json':{'format':'json'}
+# }
+# ITEM_PIPELINES = {"scrapy.pipelines.images.ImagesPipeline": 1}
+# IMAGES_STORE = "images"

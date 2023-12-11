@@ -11,7 +11,6 @@ class ForyouspiderSpider(scrapy.Spider):
 
     def parse(self, response):
         cards = response.css('.card-jfy-item-wrapper')
-        
         for card in cards:
             yield {
                 'Product Name': card.css('.card-jfy-title .title::text').get(),
@@ -19,7 +18,5 @@ class ForyouspiderSpider(scrapy.Spider):
                 'Original Price': f'{card.css('.hp-mod-price-first-line .currency::text').get().strip('.')}:{card.css('.hp-mod-price-second-line .price::text').get()}',
                 'Discount': card.css('.hp-mod-price .hp-mod-price-second-line .hp-mod-discount::text').get(),
                 'Comments Count': card.css('.card-jfy-footer .card-jfy-ratings-comment::text').get().strip('()'),
-                
-
             }
     
